@@ -1,0 +1,81 @@
+{%extends "layout.html" %}
+{% block body %}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('static/img/adminpanel.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Subg Blogs</h1>
+                    <span class="subheading">Dashboard</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="container px-4 px-lg-9">
+    <div class="row gx-4 gx-lg-9 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7" style="text-align: center;">
+            <a href="/edit/0"><button class="btn btn-outline-primary" style="border-radius: 50px;"><span><i
+                            class="fa fa-plus"></i>&nbsp;Add Post</span></button><br>
+            </a>
+            <hr>
+            <div>
+                <h3> Welcome , {{session['first_name']+" "+session['user']}}</h3>
+            </div>
+            <hr>
+            <div style="overflow-x: auto;">
+
+
+                {% if post =='None' %}
+                <p> You Not posted yet..</p>
+                <p> To add post Click on add post button 😊</p>
+                {% else %}
+
+                <table>
+                    <tr>
+                        <th>Sno</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>View</th>
+                    </tr>
+                    {% for pst in post %}
+                   
+                    <tr>
+                        <td>{{pst.sr}}</td>
+                        <td>{{pst.title}}</td>
+                        <td>{{pst.date}}</td>
+                        <td><a href="/edit/{{pst.sr}}"><button class="btn  btn-outline-success"
+                                    style="border-radius:50px">Edit</button></a></td>
+                        <td><button class="btn btn-outline-danger"
+                                    style="border-radius:50px" onclick="popup_visible('{{pst.sr}}')">Delete </button>
+
+                                    <div class='popup' id="{{pst.sr}}" name="popup">
+                                        <p>Do you Really want to delete this post</p>
+                                        <a href="delete/{{pst.sr}}" return false><button class="popup-btn" onclick="no_btn_func('{{pst.sr}}')" id="{{pst.sr}}">Yes</button></a>   
+                                        <button class="popup-btn" onclick="no_btn_func('{{pst.sr}}')">No</button>  
+                                    </div>
+                                    
+                               
+                               
+                                </td>
+
+                        <td><a href="/post/{{pst.slug}}"><button class="btn btn-outline-info"
+                                    style="border-radius:50px;">View</button></a></td>
+                    <tr>
+                        {% endfor %}
+                        {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Footer-->
+{% endblock %}

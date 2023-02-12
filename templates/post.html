@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block body %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{url_for('static',filename='/uploads/%s' %post.tileimg)}}'   )">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>{{post.title}}</h1>
+                            <h2 class="subheading">{{post.subtitle}}</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">{{userinfo.firstname}}</a>
+                                {{post.date}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div style="display: none;">
+            <p id="postsr">{{post.sr}}</p>
+            <p id="postslug">{{post.slug}}</p>
+        </div>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        {{ post.content |safe }}
+                        <div style="text-align: center; margin-top: 35px;">
+                            <!-- <a href="/liked?sr={{post.sr}}&slug={{post.slug}}"> -->
+                        
+                           {% if not liked %}
+                            <Button class="btn btn-outline-danger" id="likebtn" style="border-radius:50px;"><svg style="margin-right: 15px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                          </svg>Like <span class="badge badge-light" style="font-size:12px ;" id="likes">{{likes}}</span>
+                        </Button>
+                        {% else %}
+                        <Button class="btn btn-danger" id="likebtn" style="border-radius:50px;"><svg style="margin-right: 15px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                          </svg>Like <span class="badge badge-light" style="font-size:12px ;" id="likes">{{likes}}</span>
+                        </Button>
+                        {% endif %}
+                    
+                    <!-- </a> -->
+                </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </article>
+
+        <!-- Footer-->
+        
+        {% endblock %}

@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Subg Blogs</title>
+        <link rel="icon" type="image/x-icon" href="url('{{url_for('static',filename='/img/fav.png')}}')" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{url_for('static',filename='css/styles.css')}}" rel="stylesheet" />
+        <link href="{{url_for('static',filename='css/profile.css')}}" rel="stylesheet" />
+        <script
+            type="text/javascript"
+            src="{{url_for('static',filename='js/profile.js')}}"
+            ></script>
+        
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light mb-20" id="mainNav">
+            <div class="container px-4 px-lg-5 nav-cont">
+                <a class="navbar-brand" href="/" ><span>S</span>ubg Blogs</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/about">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact">Contact</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+       <br>
+
+        <div class="container rounded bg-white mt-5 mt-5 hello" >
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        {% if image=="photo" %}
+                        <img class="rounded-circle mt-6" width="150px" src="{{url_for('static',filename='img/avatar.webp')}}"> 
+                        {% else %}
+                        <img class="rounded-circle mt-6" width="150px" src="data:;base64,{{ image }}"/>
+                        {% endif %}
+                        <span class="font-weight-bold">{{user.firstname+" "+user.lastname}}</span>
+                        <span class="text-black-50">{{user.email}}</span><span> </span>
+                        <br>
+                        {% if info_dict['followed_by']=='None'%}
+                        <a href="/login"><button class="btn btn-success" style="border-radius: 30px ;">Follow</button></a>
+                        {%else%}
+                        {% if info_dict['followed_by']=="already_following" %}
+                        <a href="/follow/{{info_dict['email']}}/?follow={{user.email}}"><button class="btn btn-success" style="border-radius: 30px ;">Following</button></a>
+                        {% else %}
+                        <a href="/follow/{{info_dict['followed_by']}}/?follow={{user.email}}"><button class="btn btn-danger" style="border-radius: 30px ;">Follow</button></a>
+                        {% endif %}
+                        {% endif %}
+                        <br>
+                        <span class="font-weight-bold " style="color: black; font-weight:bold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Following <span class="badge badge-secondary" style="color: #092e6a;">{{info_dict['following']|length}}</span> </span>
+                        <span class="font-weight-bold " style="color: black; font-weight:bold; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Followers <span class="badge badge-secondary" style="color: #092e6a;">{{info_dict['followers']|length}}</span> </span>
+                       
+                        
+                    </div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">User Profile</h4>
+                        </div>
+                         
+                        <div>
+                            <p><span class="profile_head" >Name :</span> {{user.firstname+" "+user.lastname}}</p>
+                            <p><span class="profile_head" >Email :</span>  {{user.email}}</p>
+                            {% if user.quote != None %}
+                            <p><span class="profile_head" >Quote :</span> {{user.quote}} </p>
+                            {% endif %}
+                            {% if user.address != None %}
+                            <p><span class="profile_head" >Address :</span>  {{user.address}}</p>
+                            {% endif %}
+                            {% if user.gender != None %}
+                            <p><span class="profile_head" >Gender :</span>  {{user.gender}}</p>
+                            {% endif %}
+                            {% if user.mobile != None %}
+                            <p><span class="profile_head" >Mobile Number :</span>  {{user.mobile}}</p>
+                            {% endif %}
+                            {% if user.nationality != None %}
+                            <p><span class="profile_head" >Nationality :</span>   {{user.nationality}}</p>
+                            {% endif %}
+                            {% if user.country != None %}
+                            <p><span class="profile_head" >Country :</span>  {{user.country}}</p>
+                            {% endif %}
+                            {% if user.state != None %}
+                            <p><span class="profile_head" >State :</span>   {{user.state}}</p>
+                            {% endif %}
+                            {% if user.education != None %}
+                            <p><span class="profile_head" >Education :</span>   {{user.education}}</p>
+                            {% endif %}
+
+                            <br><br>
+                            <p><span class="profile_head_dyn" >Total Number of Posts :</span>  {{info_dict['post'] }}</p>
+                            <p><span class="profile_head_dyn" >Total Likes :</span> {{info_dict['total_likes']}}  </p>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 py-5">
+                        <h4 class="text-center ">Posts</h4>
+   
+                            <div style=" text-align: center;">
+                                {% if post|length ==0 %}
+                                <h4>Not Posted anything yet!!!</h4>
+                                {% else %}
+                                {% for pst in post %}
+                            <div class="card bg-light text-dark onhover">
+                               <a href="/post/{{pst.slug}}"> <div class="card-body posttitleonhover" style="font-size:15px;">{{pst.title}}</div></a>
+                              </div>
+                              {% endfor %}
+                               {% endif %}
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+        </div>
+        <br>
+
+        <footer class="border-top" style="background-color: white;">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+
+                            <li class="list-inline-item">
+                                <a href="{{para["instagram_url"]}}" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{para["facebook_url"]}}" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            
+                            <li class="list-inline-item">
+                                <a href="{{para["github_url"]}}" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Subg Blogs 2022</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{{ url_for('static',filename='js/scripts.js')}}"></script>
+    </body>
+</html>
+
+
+
