@@ -1,0 +1,20 @@
+{
+    "param":
+    {
+        "local_url":"mysql://root:@127.0.0.1:3325/subgblog",
+        "prod_url":"mysql://root:@127.0.0.1:3325/subgblog",
+        "instagram_url":"https://www.instagram.com/accounts/login/",
+        "facebook_url":"https://www.facebook.com/subrahmanya.bhat.777701",
+        "github_url": "https://github.com/subrahmanya01",
+        "mail_username":"subrahmanya01@yahoo.com",
+        "mail_password":"Eurofins_scam@#",
+        "admin_user":"admin@gmail.com",
+        "admin_pass":"admin@12",
+        "no_of_posts_per_page":5
+    },
+    "email_cont":
+    {
+       "emailmsg":"Hi {}!,\nYour verification code is **{}**\nEnter this code is Subgb Blogs website to activate your account\nIf you have any questions send the mail to same mail address\n\nWe are glad you to here\n\n\nThe Subg Blog Team.",
+       "resetmsg":"Hi {}!,\nYour Password reset code is **{}**\nEnter this code is Subgb Blogs website to reset your account password\nIf you have any questions send the mail to same mail address\n\nWe are glad you to here\n\n\nThe Subg Blog Team."
+    }
+}
